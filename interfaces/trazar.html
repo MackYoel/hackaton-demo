@@ -6,6 +6,13 @@
       #map { height: 100%; }
     </style>
   </head>
+
+<link href="css/materialize.css" type="text/css" rel="stylesheet">
+  <link href="css/style.css" type="text/css" rel="stylesheet" >
+   <link href="css/button.css" type="text/css" rel="stylesheet" >
+  <script src="js/modernizr.js"></script> 
+
+  
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
 //Aqui contem o lat e long
@@ -265,6 +272,18 @@ function valida(e){
       src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap">
 </script>
 <body>
+
+	<div class="navbar-fixed">
+	    <nav id="nav_f" class="default_color" role="navigation">
+	      <div class="container">
+	        <div class="nav-wrapper"><a id="logo-container" class="brand-logo">Asistente virtual de transporte turistico</a>
+	        </div>
+	      </div>
+	    </nav>
+	  </div>
+
+	  <br><br>
+
 	<strong>origen</strong>
 	latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
 	<strong>destino</strong>
