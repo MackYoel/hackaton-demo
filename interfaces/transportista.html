@@ -57,8 +57,8 @@ function initMap() {
     zoom: 18, 
     center: {lat: -16.4057119, lng: -71.5403009 }
   });
-  drawOriginMarker(map)
-  drawDestinyMarker(map)
+  // drawOriginMarker(map)
+  // drawDestinyMarker(map)
   
   map.addListener('click', function(e) {
 	var myLaLn = e.latLng;
@@ -107,16 +107,16 @@ function initMap() {
 	
   map.addListener('rightclick', function(e) {
     Arrsy.push(a);
-    let nearToOriginPoint = minDistance(originPoint, Arrsy[0])
-    let nearToDestinyPoint = minDistance(destinyPoint, Arrsy[0])
-    let xmarker = new google.maps.Marker({
-		position : new google.maps.LatLng(nearToOriginPoint.point.lat, nearToOriginPoint.point.lng)
-	})
-	xmarker.setMap(map)
-	let ymarker = new google.maps.Marker({
-		position : new google.maps.LatLng(nearToDestinyPoint.point.lat, nearToDestinyPoint.point.lng)
-	})
-	ymarker.setMap(map)
+ //    let nearToOriginPoint = minDistance(originPoint, Arrsy[0])
+ //    let nearToDestinyPoint = minDistance(destinyPoint, Arrsy[0])
+ //    let xmarker = new google.maps.Marker({
+	// 	position : new google.maps.LatLng(nearToOriginPoint.point.lat, nearToOriginPoint.point.lng)
+	// })
+	// xmarker.setMap(map)
+	// let ymarker = new google.maps.Marker({
+	// 	position : new google.maps.LatLng(nearToDestinyPoint.point.lat, nearToDestinyPoint.point.lng)
+	// })
+	// ymarker.setMap(map)
 
     // console.log('min', min)
  //    a=[];
@@ -206,7 +206,7 @@ function getRandomColor() {
     for (var i = 0; i < 6; i++ ) {
         color += letters[Math.floor(Math.random() * 4)];
     }
-    return '#0f8913';
+    return '#28558c';
 } 
 //*****************************DTW********************************//
 function DTW(){
@@ -285,15 +285,9 @@ function valida(e){
 	    </nav>
 	  </div>
 
-	  <br><br>
-	<div style="padding: 0 1em">
-		<strong>origen</strong>
-		latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
-		<strong>destino</strong>
-		latitud <input type="text" id="destinyLat" value="-16.404995574062973"> longitud <input type="text" id="destinyLng" value="-71.53760259773105">
-	</div>
 <center>
 	<div id="map" style="width: 100%; height: 600px;"></div>
+	<input type=button class="btn" value="Guardar ruta" >
 </center>
 </body>
 </html>
