@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="http://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script>
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+
+	function initialize() {
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		var lima = new google.maps.LatLng(-12.035, -77.0282400);
+		var mapOptions = {
+			zoom : 7,
+			center : lima
+		}
+
+		map = new google.maps.Map(document.getElementById("googleMap"),
+				mapOptions);
+		directionsDisplay.setMap(map);
+	}
+
+	function calcRoute() {
+		var start = document.getElementById("start").value;
+		var end = document.getElementById("end").value;
+		var request = {
+			origin : start,
+			destination : end,
+			travelMode : google.maps.TravelMode.DRIVING
+		};
+		directionsService.route(request, function(result, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(result);
+
+			}
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+</head>
+
+<body>
+
+	<div>
+		<strong>Start: </strong> <input type="text" value="arequipa"
+			id="start"> <strong>End: </strong> <input type="text"
+			value="puno" id="end"> <input type="button"
+			value="Trazar Ruta" onclick="calcRoute()">
+	</div>
+	<div id="googleMap" style="width: 800px; height: 500px;"></div>
+</body>
+
+</html>

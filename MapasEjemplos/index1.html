@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<head>
+<!-- Cargando el Api de Google maps que es una 
+biblioteca de javascript. Se agrega añadiendo
+el siguiente script-->
+
+<script src="http://maps.googleapis.com/maps/api/js?v3"></script>
+<script>
+	//FUNCION PARA INICIALIZAR EL MAPA
+	function initialize() {
+		// CREAR OBJETO MAPPROP PARA DEFINIR LAS PROPIEDADES DEL MAPA
+		var mapProp1 = {
+			center : new google.maps.LatLng(-16.3988,-71.5369),
+			zoom : 9,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+		var mapProp2 = {
+			center : new google.maps.LatLng(-16.3988,-71.5369),
+			zoom : 9,
+			mapTypeId : google.maps.MapTypeId.SATELLITE
+		};
+		var mapProp3 = {
+			center : new google.maps.LatLng(-16.3988,-71.5369),
+			zoom : 9,
+			mapTypeId : google.maps.MapTypeId.HYBRID
+		};
+		var mapProp4 = {
+			center : new google.maps.LatLng(-16.3988,-71.5369),
+			zoom : 9,
+			mapTypeId : google.maps.MapTypeId.TERRAIN
+		};
+		//CREANDO UN OBJETO MAPA
+		var map1 = new google.maps.Map(document.getElementById("googleMap1"),
+				mapProp1);
+		var map2 = new google.maps.Map(document.getElementById("googleMap2"),
+				mapProp2);
+		var map3 = new google.maps.Map(document.getElementById("googleMap3"),
+				mapProp3);
+		var map4 = new google.maps.Map(document.getElementById("googleMap4"),
+				mapProp4);
+	}
+	//DETECTOR DE EVENTOS PARA CARGAR EL MAPA
+	//AÑADE UN OYENTE DOM QUE EJECUTARA LA FUNCION INITIALIZE() EN
+	//LA VENTANA DE CARGA(CUANDO SE CARGA LA PAGINA)
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+	<!-- DIV PARA UBICAR EL MAPA -->
+	<h2>ROADMAP</h2>
+	<div id="googleMap1" style="width: 400px; height: 300px;"></div>
+	<br>
+	<h2>SATELLITE</h2>
+	<div id="googleMap2" style="width: 400px; height: 300px;"></div>
+	<br>
+	<h2>HYBRID</h2>
+	<div id="googleMap3" style="width: 400px; height: 300px;"></div>
+	<br>
+	<h2>TERRAIN</h2>
+	<div id="googleMap4" style="width: 400px; height: 300px;"></div>
+</body>
+</html>

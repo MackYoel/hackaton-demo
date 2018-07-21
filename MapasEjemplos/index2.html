@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://maps.googleapis.com/maps/api/js">
+	
+</script>
+
+<script>
+	var myCenter = new google.maps.LatLng(-16.3988, -71.5369);
+
+	function initialize() {
+		var mapProp = {
+			center : myCenter,
+			zoom : 5,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map(document.getElementById("googleMap"),
+				mapProp);
+
+		var marker = new google.maps.Marker({
+			position : myCenter,
+		});
+
+		marker.setMap(map);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script>
+	var myCenter = new google.maps.LatLng(-16.3988, -71.5369);
+	var marker;
+
+	function initialize() {
+		var mapProp = {
+			center : myCenter,
+			zoom : 5,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map(document.getElementById("googleMap1"),
+				mapProp);
+
+		var marker = new google.maps.Marker({
+			position : myCenter,
+			animation : google.maps.Animation.BOUNCE
+		});
+
+		marker.setMap(map);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script>
+	var myCenter = new google.maps.LatLng(-16.3988, -71.5369);
+
+	function initialize() {
+		var mapProp = {
+			center : myCenter,
+			zoom : 5,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map(document.getElementById("googleMap2"),
+				mapProp);
+
+		var marker = new google.maps.Marker({
+			position : myCenter,
+		});
+
+		marker.setMap(map);
+
+		var infowindow = new google.maps.InfoWindow({
+			content : "Hello World!"
+		});
+
+		infowindow.open(map, marker);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+	<div id="googleMap" style="width: 400px; height: 300px;"></div>
+	<br>
+	<div id="googleMap1" style="width: 400px; height: 300px;"></div>
+	<br>
+	<div id="googleMap2" style="width: 400px; height: 300px;"></div>
+</body>
+</html>
