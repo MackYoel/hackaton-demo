@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<meta charset="uts-8"></meta>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
@@ -14,10 +15,10 @@
 <center>
 <form name=login>
   <br>
-  Usuário:
-  <input type=text name=username size="20">
-  Senha
-  <input type=text name=password size="20">
+  user:
+  <input type=text name=username size="20" value="turista"><br>
+  password
+  <input type=password name=password size="20" value="turista">
   <input type=button value="Entrar" onClick="Login()">
 </form>
 
@@ -33,10 +34,18 @@ var username=document.login.username.value;
 username=username.toLowerCase();
 var password=document.login.password.value;
 password=password.toLowerCase();
-if (username=="turista" && password=="turista1") { window.location="3.html"; done=1; }
-if (username=="transportista" && password=="trans1") { window.location="4.html"; done=1; }
-if (username=="comercial" && password=="comercial1") { window.location="5.html"; done=1; }
-if (done==0) { alert("Senha ou Usuário inválido."); }
+if (username=="turista" && password=="turista") { 
+	window.location="trazar.html"; done=1;
+}
+if (username=="transportista" && password=="transportista") { 
+	window.location="4.html"; done=1;
+}
+if (username=="comercial" && password=="comercial") { 
+	window.location="5.html"; done=1;
+}
+if (done==0) {
+	alert("Credenciales incorrectas."); 
+}
 }
 // End -->
 </script>
