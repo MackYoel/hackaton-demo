@@ -283,28 +283,14 @@ function valida(e){
 	  </div>
 
 	  <br><br>
-
-	<strong>origen</strong>
-	latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
-	<strong>destino</strong>
-	latitud <input type="text" id="destinyLat" value="-16.404995574062973"> longitud <input type="text" id="destinyLng" value="-71.53760259773105">
+	<div style="padding: 0 1em">
+		<strong>origen</strong>
+		latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
+		<strong>destino</strong>
+		latitud <input type="text" id="destinyLat" value="-16.404995574062973"> longitud <input type="text" id="destinyLng" value="-71.53760259773105">
+	</div>
 <center>
-	<table border="1">
-	<tr>
-		<td>
-			<div id="map" style="width: 1200px; height: 600px;"></div>
-		</td>	
-	</tr>
-	<tr>
-		<td>
-			<center>
-				<!--<button onclick="DTW()">DTW</button> -->
-				<input type="text" id="classes" onKeyPress="return valida(event)">
-				<button onClick="Cluster()">Classificar</button>
-			</center>
-		</td>	
-	</tr>
-	</table>
+	<div id="map" style="width: 100%; height: 600px;"></div>
 </center>
 </body>
 </html>
