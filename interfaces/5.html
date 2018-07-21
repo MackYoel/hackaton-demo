@@ -20,17 +20,10 @@
 
 <body>
 
- <div class="navbar-fixed">
+<div class="navbar-fixed">
     <nav id="nav_f" class="default_color" role="navigation">
       <div class="container">
-        <div class="nav-wrapper"><a id="logo-container" href="index.html" class="brand-logo">AQUI VA EL NOMBRE</a>
-          <ul id="nav-mobile" class="right side-nav">
-            <li><a href="index.html" style="background-color:black;">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="productos.html">Menu</a></li>
-            <li><a href="contactanos.html">Contactanos</a></li>
-            <li><a href="login.html" >Login</a></li>
-          </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <div class="nav-wrapper"><a id="logo-container" class="brand-logo">Asistente virtual de transporte turistico</a>
         </div>
       </div>
     </nav>
@@ -41,8 +34,8 @@
     	<th>
 	    	<div class="buscador">
 	    	<label for="inputEmail4">Ingrese lugar: </label>
-			<input type="text" value="Peru, Arequipa" id="address"> <input
-				type="button" onclick="codeAddress()" value="cargar">
+			<input type="text" value="Peru, Arequipa" id="address"> 
+			<input type="button" value="cargar">
 			</div>
 			<br><br>
 
@@ -61,7 +54,7 @@
 			    <input type="text" class="form-control" id="inputAddress" placeholder="Las pizzas mas deliciosas de arequipa!">
 			  </div>
 			  <br><br>
-			  <button type="submit" class="btn btn-primary">Guardar</button>
+			  <input type="button" onclick="codeAddress()" value="guardar">
 			</form>
     	</th>
     	<th>
@@ -88,7 +81,7 @@
 
 		var mapOptions = {
 			center : latlng,
-			zoom : 8,
+			zoom : 17,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		}
 
