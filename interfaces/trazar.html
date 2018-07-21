@@ -16,13 +16,42 @@ var a=[];
 var tipo=[];
 //bandera para o grafico
 var f = 0;
+let originPoint = {}
+let destinyPoint = {}
 //numero de clases, obtido por txtbox
 var numClas
+function drawOriginMarker(map) {
+	let originLat = document.getElementById('originLat').value
+	let originLng = document.getElementById('originLng').value
+	originPoint = {
+		lat: originLat,
+		lng: originLng
+	}
+	let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(originLat, originLng)
+	})
+	xmarker.setMap(map)
+}
+function drawDestinyMarker(map) {
+	let destinyLat = document.getElementById('destinyLat').value
+	let destinyLng = document.getElementById('destinyLng').value
+	destinyPoint = {
+		lat: destinyLat,
+		lng: destinyLng
+	}
+	let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(destinyLat, destinyLng)
+	})
+	xmarker.setMap(map)
+}
+
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 18, 
     center: {lat: -16.4057119, lng: -71.5403009 }
   });
+  drawOriginMarker(map)
+  drawDestinyMarker(map)
   
   map.addListener('click', function(e) {
 	var myLaLn = e.latLng;
@@ -71,11 +100,56 @@ function initMap() {
 	
   map.addListener('rightclick', function(e) {
     Arrsy.push(a);
-    a=[];
-	alert(Arrsy[0][0].lat);
-	alert(Arrsy[0][0].lng);
-	alert(Arrsy[0]);
+    let nearToOriginPoint = minDistance(originPoint, Arrsy[0])
+    let nearToDestinyPoint = minDistance(destinyPoint, Arrsy[0])
+    let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(nearToOriginPoint.point.lat, nearToOriginPoint.point.lng)
+	})
+	xmarker.setMap(map)
+	let ymarker = new google.maps.Marker({
+		position : new google.maps.LatLng(nearToDestinyPoint.point.lat, nearToDestinyPoint.point.lng)
+	})
+	ymarker.setMap(map)
+
+    // console.log('min', min)
+ //    a=[];
+	// alert(Arrsy[0][0].lat);
+	// alert(Arrsy[0][0].lng);
+	// alert(Arrsy[0]);
+	console.log('Arrsy', Arrsy)
   });
+}
+
+// let lat, lng, xmarker
+// for (let coordinate of coordinates) {
+// 	lat = coordinate[0]
+// 	lng = coordinate[1]
+// 	xmarker = new google.maps.Marker({
+// 		position : new google.maps.LatLng(lat, lng)
+// 	})
+// 	xmarker.setMap(map1)
+// }
+
+
+
+function minDistance(target, points){
+	let x1, x2, y1, y2
+	let distances = []
+	let results = []
+	x1 = target.lat
+	y1 = target.lng
+	for (let point of points){
+		x2 = point.lat
+		y2 = point.lng
+		let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+		distances.push(distance)
+		results.push({
+			point: point,
+			distance: distance
+		})
+	}
+	let min = Math.min(...distances)
+	return results.find(result => result.distance === min)
 }
 //*****************************MAIN********************************//
 function DTW(){
@@ -191,6 +265,10 @@ function valida(e){
       src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap">
 </script>
 <body>
+	<strong>origen</strong>
+	latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
+	<strong>destino</strong>
+	latitud <input type="text" id="destinyLat" value="-16.405525614339"> longitud <input type="text" id="destinyLng" value="-71.54062491084954">
 <center>
 	<table border="1">
 	<tr>
