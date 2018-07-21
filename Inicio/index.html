@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>CUZCO'S FOOD</title>
+
+  <!-- CSS  -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet">
+  <link href="css/style.css" type="text/css" rel="stylesheet" >
+   <link href="css/button.css" type="text/css" rel="stylesheet" >
+  <script src="js/modernizr.js"></script> <!-- Modernizr -->
+</head>
+
+<body id="top" class="scrollspy">
+
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper"><a id="logo-container" href="index.html" class="brand-logo">CUZCO'S FOOD</a>
+          <ul id="nav-mobile" class="right side-nav">
+            <li><a href="index.html" style="background-color:black;">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="productos.html">Menu</a></li>
+            <li><a href="contactanos.html">Contactanos</a></li>
+            <li><a href="login.html" >Login</a></li>
+          </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+      </div>
+    </nav>
+  </div>
+ <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
+              [{b:1900,d:2000,x:-379,e:{x:7}}],
+              [{b:1900,d:2000,x:-379,e:{x:7}}],
+              [{b:-1,d:1,o:-1,r:288,sX:9,sY:9},{b:1000,d:900,x:-1400,y:-660,o:1,r:-288,sX:-9,sY:-9,e:{r:6}},{b:1900,d:1600,x:-200,o:-1,e:{x:16}}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: true,
+              $SlideDuration: 800,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*responsive code begin*/
+            /*you can remove responsive code if you don't want the slider scales while window resizing*/
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            /*responsive code end*/
+        });
+    </script>
+    <style>
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url('img/b05.png') no-repeat;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+        /* jssor slider arrow navigator skin 22 css */
+        /*
+        .jssora22l                  (normal)
+        .jssora22r                  (normal)
+        .jssora22l:hover            (normal mouseover)
+        .jssora22r:hover            (normal mouseover)
+        .jssora22l.jssora22ldn      (mousedown)
+        .jssora22r.jssora22rdn      (mousedown)
+        .jssora22l.jssora22lds      (disabled)
+        .jssora22r.jssora22rds      (disabled)
+        */
+        .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url('img/a22.png') center center no-repeat;
+            overflow: hidden;
+        }
+        .jssora22l { background-position: -10px -31px; }
+        .jssora22r { background-position: -70px -31px; }
+        .jssora22l:hover { background-position: -130px -31px; }
+        .jssora22r:hover { background-position: -190px -31px; }
+        .jssora22l.jssora22ldn { background-position: -250px -31px; }
+        .jssora22r.jssora22rdn { background-position: -310px -31px; }
+        .jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
+        .jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
+    </style>
+    <!--slider-->
+    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+            <div data-p="225.00">
+                <img data-u="image" src="img/fondo1.jpg" />
+    
+                <div style="position: absolute; top: 300px; left: 30px; width: 580px; height: 220px; font-size: 30px; color: #ffffff; line-height: 38px;">Con una maravillosa vista mientras disfrutas una maravillosa comida.</div>
+            </div>
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="img/fondo2.jpg" />
+                <div style="position: absolute; top: 300px; left: 30px; width: 580px; height: 220px; font-size: 30px; color: #ffffff; line-height: 38px;">Te brinda la mejor atencion y los mejores platillos de la gastronomia cuzqueña.</div>
+            </div>
+            <div data-p="225.00" data-po="80% 55%" style="display: none;">
+                <img data-u="image" src="img/fondo4.jpg" />
+                <div style="position: absolute; top: 300px; left: 30px; width: 580px; height: 220px; font-size: 30px; color: #ffffff; line-height: 38px;">Ven a disfrutar los mas deliciosos platillos</div>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;" data-autocenter="2"></span>
+    </div>
+
+ <div id="intro" class="section scrollspy">
+  <div class="container">
+      <!--   Icon Section   -->
+    <div class="row">
+          <div  class="col s12">
+            <h2 class="center header text_h2"> Para pasar un momento agradable junto a la familia, amigos, etc. <span class="span_h2"> para todos los gustos. </span> Nos gustan ofrecer siempre lo mejor de nuestra tierra,<span class="span_h2"> para un buen recuerdo de ella.</span </h2>
+          </div>
+    </div>
+
+  </div>
+</div>
+
+ <div id="intro" class="section scrollspy">
+  
+  <div class="container">
+        <!--contenido izquierdo -->
+    <div class="content-left">
+      <h5>Platos Típicos</h5>
+      <ul >
+        <li><a  href="productos.html">Chancho al Horno</a></li>
+        <hr>
+        <li><a  href="productos.html">Chuño Cola</a></li>
+        <hr>
+        <li><a  href="productos.html">Olluquito con Charqui</a></li>
+        <hr>
+        <li><a  href="productos.html">Chiri uchu</a></li>
+        <hr>
+        <li><a  href="productos.html">Pepian de Cuy</a></li>
+        <hr>
+        <li><a  href="productos.html">Queso Kapchi</a></li>
+
+      </ul>
+      <h5>Más</h5>
+           <ul >
+        <li><a  href="productos.html">Bebidas</a></li>
+        <hr>
+        <li><a  href="productos.html">Entradas</a></li>
+        <hr>
+        <li><a  href="productos.html">Sopas</a></li>
+        
+
+      </ul>
+        
+      </div>
+
+      <!-- catalogo de peluches los mas vendidos-->
+        <div class="mas_vendidos">
+        <h5 class="header text_b">Platillos mas populares </h5>
+        <hr>
+              <div class="card" style="width: 300px;float: left;margin-left: 10px">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="img/cuy.jpg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">CUY A LA PIEDRA<i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> CUY A LA PIEDRA <i class="mdi-navigation-close right"></i></span>
+                    <p>Es un plato típico de la gastronomía cusqueña y arequipeña. El cuy se fríe en abundante aceite bajo una piedra que hace de tapa. Se suele acompañar con papas hervidas, yucas fritas, maíz, salsa criolla, etc.
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                  </div>    
+
+
+              </div>
+
+              <div class="card" style="width: 300px;float: left;margin-left: 10px">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"  src="img/humitas.jpg" height="226">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">HUMITAS <i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> HUMITAS <i class="mdi-navigation-close right"></i></span>
+                    <p>Consiste básicamente en una pasta o masa de maíz levemente aliñada, envuelta y finalmente cocida o tostada en las propias hojas (chala o panca) de una mazorca de maíz.
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                    </p>
+                  </div>
+              </div>
+
+             <div class="card" style="width: 300px;float: left;margin-left: 10px">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"  src="img/chicharron.jpg" height="226">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> LECHON AL HORNO<i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> LECHON AL HORNO<i class="mdi-navigation-close right"></i></span>
+                    <p>La carne asada de lechón o cerdo se sirve como piqueo. Se escogen trozos de carne de cerdo con hueso, se lavan, sazonan y se ponen a macerar con sal, pimienta, ají molido, vinagre, cerveza o sillao y ají panca molido. Se deja macerar de 24 a 48 horas. Después se hornea a fuego lento hasta verificar que esté a punto. Se sirve con yucas y mote.
+                    </p>
+
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                  </div>
+              </div>
+        </div>
+
+
+        
+        <div class="regularmente_vendidos">
+          <h6 class="header text_b"> Pruebalos todos </h6>
+          <hr>
+          <div class="card" style="width: 200px;float: left;margin-left: 10px">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"  src="img/olluquito.jpg" height="226">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">OLLUQUITO <i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> OLLUQUITO <i class="mdi-navigation-close right"></i></span>
+                    <p> En una olla con aceite, se fríe el ajo, ají panca molido, charqui cortado finito o carne de res, pimienta, sal y comino. Se revuelve bien y se espera que todo esté bien cocido para agregar el olluco picado.
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                  </div>
+              </div>
+
+              <div class="card" style="width: 200px;float: left;margin-left: 40px">
+                 <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="img/Pachamanca.jpg" height="226" >
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">PACHAMANCA <i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">PACHAMANCA <i class="mdi-navigation-close right"></i></span>
+                    <p> Elaborado por la cocción, al calor de piedras precalentadas, de carnes de vaca, de cerdo, pollo y cuy previamente aderezados con ingredientes como chancho, huacatay y otras especias.
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                  </div>
+
+              </div>
+
+             <div class="card" style="width: 200px;float: left;margin-left: 40px">
+                 <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="img/chuno.jpg" height="226">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> CHU&NtildeO COLA <i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> CHU&NtildeO COLA <i class="mdi-navigation-close right"></i></span>
+                    <p> Delicioso potaje de origen incaico. Es un caldo picante a base de papas, chuño, garbanzos, arroz, carnes diversas.Este plato se come en cualquier época del año.
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30">Delivery</a>
+                  </div>
+              </div>
+              <div class="card" style="width: 200px;float: left;margin-left: 40px">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="img/pepian.jpg" height="226">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> PEPIAN CUY <i class="mdi-navigation-more-vert right"></i></span>
+                    <p><a class="activator waves-effect">leer mas</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> PEPIAN DE CUY <i class="mdi-navigation-close right"></i></span>
+                    <p> Es un guiso de choclo y carne de cuy, aderezado con cebolla y ají panca. 
+                    </p>
+                    <a href=""><img src="img/carrito.png" width="30" height="30"> Delivery</a>
+                  </div>
+              </div>
+        </div>
+  </div>
+  </div>
+  </div>
+
+    <div class="row">
+    <div class="col s12 m4 l4"></div>
+    </div>
+<br><br><br><br><br><br>
+    
+ 
+<div class="row">
+            <div  class="col s12 m4 l4">
+              <div class="center promo promo-example">
+                <i class="mdi-image-flash-on"></i>
+                <h5 class="promo-caption">A&ntildeos de experiencia</h5>
+                <p class="light center">Todo empezó como un pequeño negocio familiar, nacido desde el cariño allá por los años sesenta.</p>
+              </div>
+            </div>
+            <div class="col s12 m4 l4">
+              <div class="center promo promo-example">
+                <i class="mdi-social-group"></i>
+                <h5 class="promo-caption">Confianza</h5>
+                <p class="light center">En Cuzco's nos sentimos felices cuando un cliente se siente satisfecho y con ganas de saborear otro delicioso platillo y compartirlo con sus seres queridos.</p>
+              </div>
+            </div>
+            <div class="col s12 m4 l4">
+              <div class="center promo promo-example">
+                <i class="mdi-action-settings"></i>
+               <h5 class="promo-caption">Eficiencia</h5>
+                <p class="light center">Queremos que todos nuestros clientes se sientan a gusto para una mejor experiencia.Por lo cual el ambiente tambien es muy importante</p>
+              </div>
+            </div>
+      </div>
+
+    <div class="row">
+        <div  class="col s12 m4 l4">
+          <div class="center promo promo-example">
+            <i class="mdi-action-favorite"></i>
+            <h5 class="promo-caption">Calidad</h5>
+            <p class="light center">Estamos seguros que si has llegado hasta aquí, compartes nuestro amor por la gastronomia cuzque&ntildea, por desgustar manjares elaborados con los mejores productos</p>
+          </div>
+        </div>
+        <div class="col s12 m4 l4">
+          <div class="center promo promo-example">
+            <i class="mdi-communication-phone"></i>
+            <h5 class="promo-caption">Atenci&oacuten Personalizada</h5>
+            <p class="light center">Nosotros creemos que existe un plato especial para cada comensal y es nuestro deber ayudarlos a encontrarlo</p>
+          </div>
+        </div>
+        <div class="col s12 m4 l4">
+          <div class="center promo promo-example">
+            <i class="mdi-communication-stay-current-portrait"></i>
+           <h5 class="promo-caption">Servicio de calidad</h5>
+            <p class="light center">La tecnologia avanza muy rapido y en Cuzco's Food queremos asegurarnos de brindarles siempre un servicio amigable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <br><br>
+    <h6 class="header text_b light center"> Cuestionario </h6><br>
+    <h6 class="light center"> Ayudenos, por favor, a mejorar este sitio contestando a las siguientes preguntas. Solo tardara 2-3 minutos en completar este cuestionario. <br><br>
+    ADVERTENCIA: Si tiene alguna pregunta o comentario que requiera respuesta, no use este formulario. Contacte entonces, por favor, con nuestro <a href="contactanos.html">Servicio al Cliente</a>
+    <br><br>
+    <a href="cuestionario.html" class="myButton">Ir a Cuestionario</a>
+    </h6>
+<br><br>
+  <footer id="contact" class="page-footer default_color scrollspy">
+    <div class="container">  
+ <div class="row">
+
+        <div class="col l6 s12">
+          <h5 class="white-text">CUZCO'S FOOD</h5>
+          <p class="grey-text text-lighten-4">
+            Trabajamos en Peru-Cuzco, y nos mueve la pasión por lo que hacemos.
+            <br> Delivery y mayor informacion al:
+            <br><br> Av. Ejercito 1025 B
+            <br><br> 054-094756
+            <br><br>
+            <img src="img/wpp.png" width="40" height="40">971079067
+            <br><br>
+            
+          </p>
+
+
+        </div>
+        
+
+        
+        <div class="col l3 s12">
+        <h5 class="white-text">Siguenos en:</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.andreagalanti.it/"><img src="img/Facebook.png"></a>
+            <a class="white-text" href="http://www.andreagalanti.it/lab"><img src="img/Twitter.png"></a>
+            <a class="white-text" href="http://www.andreagalanti.it/"><img src="img/Youtube.png"></a>
+            <a class="white-text" href="http://www.andreagalanti.it/lab"><img src="img/Pinterest.png"></a>
+            <a class="white-text" href="http://www.andreagalanti.it/lab"><img src="img/Blogger.png"></a>
+            <a class="white-text" href="http://www.andreagalanti.it/lab"><img src="img/Google plus.png"></a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <ul>
+            <li><p class="white-text">© 2012 Cuzco Cel. Todos los derechos reservados. GASTRONOMIA PERUANA, S.L., B-46101002, 26 46469 Beniparrell (PERU). 961211838
+            </p>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright default_color">
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
