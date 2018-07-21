@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript">
+//Aqui contem o lat e long
+var Arrsy=[];
+//Aqui contem solo um lat, long
+var a=[];
+//Aqui contem as clases para o cluster
+var tipo=[];
+//bandera para o grafico
+var f = 0;
+let originPoint = {}
+let destinyPoint = {}
+//numero de clases, obtido por txtbox
+var numClas
+function drawOriginMarker(map) {
+	let originLat = document.getElementById('originLat').value
+	let originLng = document.getElementById('originLng').value
+	originPoint = {
+		lat: originLat,
+		lng: originLng
+	}
+	let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(originLat, originLng)
+	})
+	xmarker.setMap(map)
+}
+function drawDestinyMarker(map) {
+	let destinyLat = document.getElementById('destinyLat').value
+	let destinyLng = document.getElementById('destinyLng').value
+	destinyPoint = {
+		lat: destinyLat,
+		lng: destinyLng
+	}
+	let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(destinyLat, destinyLng)
+	})
+	xmarker.setMap(map)
+}
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 18, 
+    center: {lat: -16.4057119, lng: -71.5403009 }
+  });
+  drawOriginMarker(map)
+  drawDestinyMarker(map)
+  
+  map.addListener('click', function(e) {
+	var myLaLn = e.latLng;
+	//AQUI CAPTURO LA LATITUD Y LA LONGITUD
+	var latitude = myLaLn.lat();
+	var longitude = myLaLn.lng();
+	//INGRESO ESOS VALORES DENTRO DE UN OBJETO
+	b={lat: latitude, lng: longitude};
+	//INGRESO EN MI VECTOR DE OBJETOS, EL OBJETO b
+	a.push(b);
+	//PREPARO PARA SER DIBUJADO, EL COLOR, LAS COORDENADAS QUE NO ES MAS QUE MI VECTOR a
+	if(f == 1){
+		//****mudar o color para as clases ****
+		var color = [];
+		var i=0;
+		for(;i < numClas; i++){
+			color.push(getRandomColor());
+		}
+		var k=0;
+		for(;k < tipo.length; k++){
+			
+			var flightPat = new google.maps.Polyline({
+				path: Arrsy[k],
+				geodesic: true,
+				strokeColor: color[tipo[k]],
+				strokeOpacity: 1.0,
+				strokeWeight: 2
+			});
+			//alert(tipo[k]);
+			//alert(color[tipo[k]]);
+			flightPat.setMap(map);
+		}
+	}else{
+		var flightPath = new google.maps.Polyline({
+			path: a,
+			geodesic: true,
+			strokeColor: getRandomColor(),
+			strokeOpacity: 1.0,
+			strokeWeight: 2
+		});
+		//Y POR ULTIMO DIBUJO.
+		flightPath.setMap(map);
+	}
+  });
+  //Aquim para o evento click dereito
+	
+  map.addListener('rightclick', function(e) {
+    Arrsy.push(a);
+    let nearToOriginPoint = minDistance(originPoint, Arrsy[0])
+    let nearToDestinyPoint = minDistance(destinyPoint, Arrsy[0])
+    let xmarker = new google.maps.Marker({
+		position : new google.maps.LatLng(nearToOriginPoint.point.lat, nearToOriginPoint.point.lng)
+	})
+	xmarker.setMap(map)
+	let ymarker = new google.maps.Marker({
+		position : new google.maps.LatLng(nearToDestinyPoint.point.lat, nearToDestinyPoint.point.lng)
+	})
+	ymarker.setMap(map)
+
+    // console.log('min', min)
+ //    a=[];
+	// alert(Arrsy[0][0].lat);
+	// alert(Arrsy[0][0].lng);
+	// alert(Arrsy[0]);
+	console.log('Arrsy', Arrsy)
+  });
+}
+
+// let lat, lng, xmarker
+// for (let coordinate of coordinates) {
+// 	lat = coordinate[0]
+// 	lng = coordinate[1]
+// 	xmarker = new google.maps.Marker({
+// 		position : new google.maps.LatLng(lat, lng)
+// 	})
+// 	xmarker.setMap(map1)
+// }
+
+
+
+function minDistance(target, points){
+	let x1, x2, y1, y2
+	let distances = []
+	let results = []
+	x1 = target.lat
+	y1 = target.lng
+	for (let point of points){
+		x2 = point.lat
+		y2 = point.lng
+		let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+		distances.push(distance)
+		results.push({
+			point: point,
+			distance: distance
+		})
+	}
+	let min = Math.min(...distances)
+	return results.find(result => result.distance === min)
+}
+//*****************************MAIN********************************//
+function DTW(){
+	//var prob = new DTW_Sakoe_Chiba(0.5);
+	//alert(Arrsy[0]);
+	var x = Arrsy[0];//[[1,2],[8,9],[10,11],[9,12],[10,11],[0,1]];
+	var y = Arrsy[1];
+	//alert(prob.calculateDTW(x,y));
+}
+function Cluster(){
+	//leo la entrada do txtbox
+	var clases = document.getElementById('classes');
+	var i = 0;
+	numClas = parseInt(clases.value);
+	for(;i<numClas;i++){
+		tipo.push(i);
+	}	
+	var k,h = 0;
+	var dtw1 = new DTW();
+	for(k = numClas;k < Arrsy.length; k++){
+		var min = 1000.0;
+		var indice = 0;
+		for(h = 0; h < numClas; h++){
+			var val = dtw1.calculateDTW(Arrsy[k], Arrsy[h]);			
+			if(min > val){
+				min = val;
+				indice = h;
+			}
+		}
+		tipo.push(indice);
+	}
+	f=1;	
+	alert(tipo);
+}
+//*************************************************************//
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
+}
+//***Para mudar o color aleatoriamente***
+function getRandomColor() {
+    var letters = '01EF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 4)];
+    }
+    return color;
+} 
+//*****************************DTW********************************//
+function DTW(){
+	this.calculateDTW = function(training_series, test_series){
+		var x,y = 0;
+		var x = training_series.length;
+		//alert(x);
+		var y = test_series.length;
+		var m = this.matriz2D(x,y)
+		//m[0][0] = 0.0;
+		m[0][0] = this.distance(training_series[0], test_series[0]);
+		var j,i = 1;
+		for(i = 1; i < training_series.length; i++){
+			for(j = 1; j < test_series.length; j++){
+				var cost = this.distance(training_series[i], test_series[j]);
+				m[i][j] = cost + Math.min(m[i-1][j], m[i][j-1], m[i-1][j-1]);
+			}
+		}
+		return m[x-1][y-1];
+	}
+	this.matriz2D = function(rows, cols) {
+		var array = [], row = [];
+		while (cols--) row.push(1000.0);
+		while (rows--) array.push(row.slice());
+		return array;
+	}
+	this.lowerBound = function(i, band){
+		if(i - band > 0){
+			return (i - band);
+		}else{
+			return i;
+		}
+	}
+	this.upperBound = function(i, band, max){
+		if(i + band <= max ){
+			return i + band;
+		}else{
+			return max;
+		}		
+	}
+	this.distance = function(a, b){
+		var dif1 = a.lat - b.lat;
+		var dif2 = a.lng - b.lng;
+		var euclideanDistance = Math.sqrt(dif1*dif1 + dif2*dif2);
+		return euclideanDistance;
+	}
+}
+//*****************************END_DTW*****************************//
+//*** para textbox validar so numeros ***
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+    //Tecla de retroceso para borrar
+    if (tecla==8){
+        return true;
+    }
+    //Patron de entrada, en este caso solo aceita numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap">
+</script>
+<body>
+	<strong>origen</strong>
+	latitud <input type="text" id="originLat" value="-16.40576233088913"> longitud <input type="text" id="originLng" value="-71.54221814300439">
+	<strong>destino</strong>
+	latitud <input type="text" id="destinyLat" value="-16.405525614339"> longitud <input type="text" id="destinyLng" value="-71.54062491084954">
+<center>
+	<table border="1">
+	<tr>
+		<td>
+			<div id="map" style="width: 1200px; height: 600px;"></div>
+		</td>	
+	</tr>
+	<tr>
+		<td>
+			<center>
+				<!--<button onclick="DTW()">DTW</button> -->
+				<input type="text" id="classes" onKeyPress="return valida(event)">
+				<button onClick="Cluster()">Classificar</button>
+			</center>
+		</td>	
+	</tr>
+	</table>
+</center>
+</body>
+</html>
